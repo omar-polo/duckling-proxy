@@ -17,7 +17,6 @@ import (
 	"time"
 )
 
-
 var version = "0.2.1"
 
 type WebPipeHandler struct {
@@ -206,19 +205,18 @@ func main() {
 
 	flag.Parse()
 
-    if *verFlag {
+	if *verFlag {
 		fmt.Println("Duckling Proxy v" + version)
 		return
 	}
-    
+
 	handler := WebPipeHandler{}
 
-     info("Starting Duckling Proxy v%s on %s port: %d", version, *address, *port)
+	info("Starting Duckling Proxy v%s on %s port: %d", version, *address, *port)
 
 	err := gemini.ListenAndServe(*address+":"+strconv.Itoa(*port), *serverCert, *serverKey, handler)
 
-
-    if err != nil {
+	if err != nil {
 		log.Fatal(err)
 	}
 }
